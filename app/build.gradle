@@ -28,6 +28,7 @@ dependencies {
     api 'com.android.support:appcompat-v7:+'
     api 'com.nineoldandroids:library:2.4.0+'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
 }
 repositories {
     mavenCentral()

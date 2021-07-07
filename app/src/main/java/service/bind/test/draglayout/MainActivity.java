@@ -1,14 +1,14 @@
 package service.bind.test.draglayout;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 
 public class MainActivity extends AppCompatActivity {
     private static MainActivity mActivity;
 
-    public static MainActivity get(){
+    public static MainActivity get() {
         return mActivity;
     }
 
@@ -16,22 +16,24 @@ public class MainActivity extends AppCompatActivity {
     DragLayer mDragLayer;
     DragController mDragController;
     WorkSpace mWorkSpace;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mActivity=this;
-        mDragController=new DragController(this);
+        mActivity = this;
+        mDragController = new DragController(this);
         setContentView(R.layout.activity_main);
-        mDragLayer= (DragLayer) findViewById(R.id.mDragLayer);
+        mDragLayer = (DragLayer) findViewById(R.id.mDragLayer);
         mDragLayer.setup(mDragController);
-        mWorkSpace= (WorkSpace) findViewById(R.id.mWorkspace);
-        mBottomToolbar= (BottomToolbar) findViewById(R.id.toolbar);
+        mWorkSpace = (WorkSpace) findViewById(R.id.mWorkspace);
+        mBottomToolbar = (BottomToolbar) findViewById(R.id.toolbar);
     }
 
     public View getToolBar() {
         return mBottomToolbar;
     }
-    public DragController getDragController(){
+
+    public DragController getDragController() {
         return mDragController;
     }
 
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         return mDragLayer;
     }
 
-    public WorkSpace getWorkspace(){
+    public WorkSpace getWorkspace() {
         return mWorkSpace;
     }
 }
