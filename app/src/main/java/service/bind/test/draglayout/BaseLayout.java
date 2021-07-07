@@ -31,9 +31,7 @@ public class BaseLayout extends ViewGroup {
         int sizeHeight = MeasureSpec.getSize(heightMeasureSpec);
         // 计算出所有的childView的宽和高
         measureChildren(widthMeasureSpec, heightMeasureSpec);
-
-        setMeasuredDimension(sizeWidth,
-                sizeHeight);
+        setMeasuredDimension(sizeWidth, sizeHeight);
     }
 
 
@@ -48,11 +46,8 @@ public class BaseLayout extends ViewGroup {
      */
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        // layout child
-
         int left = 0;
         int top = 0;
-
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             View v = getChildAt(i);
@@ -60,26 +55,21 @@ public class BaseLayout extends ViewGroup {
                 v.layout(left, top, v.getMeasuredWidth(), v.getMeasuredHeight());
             }
         }
-
-
     }
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
 
-        int count=getChildCount();
-        long drawtime=getDrawingTime();
-        if(count>0){
+        int count = getChildCount();
+        long drawTime = getDrawingTime();
+        if (count > 0) {
             canvas.save();
-            for(int i=0;i<count;i++){
-
-                drawChild(canvas,getChildAt(i),drawtime);
-
+            for (int i = 0; i < count; i++) {
+                drawChild(canvas, getChildAt(i), drawTime);
             }
             canvas.restore();
-        }else{
+        } else {
             super.dispatchDraw(canvas);
         }
-
     }
 }

@@ -77,7 +77,7 @@ public class WorkSpace extends BaseLayout implements DropTarget {
         mScroller = new OverScroller(getContext());
 
         //一般来说mOverScrollDistance为0，OverFlingDistance不一致，这里为了整强显示效果
-        mOverFlingDistance = 50;
+        mOverFlingDistance = 10;
 
         setOverScrollMode(OVER_SCROLL_ALWAYS);
         // 这里还是需要的。overScrollBy中会使用到

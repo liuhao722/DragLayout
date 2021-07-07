@@ -1,6 +1,7 @@
 package service.bind.test.draglayout;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -15,9 +16,11 @@ import com.nineoldandroids.view.ViewHelper;
 /**
  * Created by Administrator on 2016/9/5.
  */
-public class CellLayout  extends BaseLayout{
+public class CellLayout extends BaseLayout {
     AnimatorSet set = new AnimatorSet();
-    Paint mPaint=new Paint();
+    Paint mPaint = new Paint();
+    Bitmap bitmap;
+
     public CellLayout(Context context) {
         super(context);
         init();
@@ -32,7 +35,9 @@ public class CellLayout  extends BaseLayout{
         super(context, attrs, defStyleAttr);
         init();
     }
-    public void init(){
+
+    public void init() {
+        bitmap = DrawBitmapUtilsKt.getBitmap(getContext(), R.drawable.bg);
 //        set.playTogether(
 //                ObjectAnimator.ofFloat(myView, rotationX, 0, 360),
 //                ObjectAnimator.ofFloat(myView, rotationY, 0, 180),
@@ -45,7 +50,7 @@ public class CellLayout  extends BaseLayout{
 //        );
 //        set.setDuration(5 * 1000);
 
-        mPaint.setColor(Color.RED);
+//        mPaint.setColor(Color.RED);
     }
 
 
@@ -64,7 +69,7 @@ public class CellLayout  extends BaseLayout{
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        canvas.drawRect(new Rect(0,0,getWidth(),getHeight()),mPaint);
+        DrawBitmapUtilsKt.drawBitmap(canvas, bitmap, getWidth(),getHeight());
         super.dispatchDraw(canvas);
     }
 
