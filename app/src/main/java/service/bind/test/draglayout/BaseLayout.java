@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 /**
  * Created by Administrator on 2016/9/5.
@@ -46,15 +47,22 @@ public class BaseLayout extends ViewGroup {
      */
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        int left = 0;
-        int top = 0;
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             View v = getChildAt(i);
             if (v != null) {
-                v.layout(left, top, v.getMeasuredWidth(), v.getMeasuredHeight());
+                v.layout(v.getLeft(), v.getTop(), v.getMeasuredWidth(), v.getMeasuredHeight());
             }
         }
+//        int left = 0;
+//        int top = 0;
+//        int childCount = getChildCount();
+//        for (int i = 0; i < childCount; i++) {
+//            View v = getChildAt(i);
+//            if (v != null) {
+//                v.layout(left, top, v.getMeasuredWidth(), v.getMeasuredHeight());
+//            }
+//        }
     }
 
     @Override

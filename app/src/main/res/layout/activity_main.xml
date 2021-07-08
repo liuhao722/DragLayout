@@ -13,5 +13,5 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/custom_navbar"
-        android:visibility="visible" />
+        android:visibility="gone" />
 </service.bind.test.draglayout.DragLayer>
