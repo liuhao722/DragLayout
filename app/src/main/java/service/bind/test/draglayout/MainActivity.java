@@ -12,8 +12,8 @@ public class MainActivity extends AppCompatActivity {
         return mActivity;
     }
 
-    BottomToolbar mBottomToolbar;
-    DragLayer mDragLayer;
+//    BottomToolbar mBottomToolbar;
+//    DragLayer mDragLayer;
     DragController mDragController;
     WorkSpace mWorkSpace;
 
@@ -23,25 +23,25 @@ public class MainActivity extends AppCompatActivity {
         mActivity = this;
         mDragController = new DragController(this);
         setContentView(R.layout.activity_main);
-        mDragLayer = (DragLayer) findViewById(R.id.mDragLayer);
-        mDragLayer.setup(mDragController);
+//        mDragLayer = (DragLayer) findViewById(R.id.mDragLayer);
+//        mDragLayer.setup(mDragController);
         mWorkSpace = (WorkSpace) findViewById(R.id.mWorkspace);
-        mBottomToolbar = (BottomToolbar) findViewById(R.id.toolbar);
+//        mBottomToolbar = (BottomToolbar) findViewById(R.id.toolbar);
     }
 
-    public View getToolBar() {
-        return mBottomToolbar;
-    }
-
-    public DragController getDragController() {
-        return mDragController;
-    }
-
-    public ViewGroup getDragLayer() {
-        return mDragLayer;
-    }
-
-    public WorkSpace getWorkspace() {
-        return mWorkSpace;
-    }
+//    public View getToolBar() {
+//        return mBottomToolbar;
+//    }
+//
+//    public DragController getDragController() {
+//        return mDragController;
+//    }
+//
+//    public ViewGroup getDragLayer() {
+//        return mDragLayer;
+//    }
+//
+//    public WorkSpace getWorkspace() {
+//        return mWorkSpace;
+//    }
 }

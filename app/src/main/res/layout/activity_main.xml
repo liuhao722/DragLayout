@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<service.bind.test.draglayout.DragLayer xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mDragLayer"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+<!--    <service.bind.test.draglayout.DragLayer-->
+
+<!--        android:id="@+id/mDragLayer"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+<!--        <service.bind.test.draglayout.WorkSpace-->
+<!--            android:id="@+id/mWorkspace"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:clipChildren="false" />-->
+
+<!--        <include-->
+<!--            android:id="@+id/toolbar"-->
+<!--            layout="@layout/custom_navbar"-->
+<!--            android:visibility="gone" />-->
+<!--    </service.bind.test.draglayout.DragLayer>-->
 
     <service.bind.test.draglayout.WorkSpace
         android:id="@+id/mWorkspace"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipChildren="false" />
-
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/custom_navbar"
-        android:visibility="gone" />
-</service.bind.test.draglayout.DragLayer>
+</FrameLayout>

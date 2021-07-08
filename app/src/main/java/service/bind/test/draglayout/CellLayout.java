@@ -3,26 +3,18 @@ package service.bind.test.draglayout;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.nineoldandroids.animation.AnimatorSet;
-
 /**
  * Created by Administrator on 2016/9/5.
  */
 public class CellLayout extends BaseLayout {
     private static final String TAG = "CellLayout";
-    AnimatorSet set = new AnimatorSet();
-    Paint mPaint = new Paint();
-    Bitmap bitmap;
-    Bitmap bitmapItemFilm;
-    Bitmap bitmapItemBook;
-    Bitmap bitmapItemGame;
+    Bitmap bitmapBg;
     ImageView film, book, game;
 
     public CellLayout(Context context) {
@@ -41,10 +33,7 @@ public class CellLayout extends BaseLayout {
     }
 
     public void init() {
-        bitmap = DrawBitmapUtilsKt.getBitmap(getContext(), R.drawable.bg);
-        bitmapItemFilm = DrawBitmapUtilsKt.getBitmap(getContext(), R.drawable.icon1);
-        bitmapItemGame = DrawBitmapUtilsKt.getBitmap(getContext(), R.drawable.icon2);
-        bitmapItemBook = DrawBitmapUtilsKt.getBitmap(getContext(), R.drawable.icon3);
+        bitmapBg = DrawBitmapUtilsKt.getBitmap(getContext(), R.drawable.bg);
 
         film = new ImageView(getContext());
         film.setImageResource(R.drawable.icon1);
@@ -57,20 +46,6 @@ public class CellLayout extends BaseLayout {
         book = new ImageView(getContext());
         book.setImageResource(R.drawable.icon3);
         addView(book);
-
-//        set.playTogether(
-//                ObjectAnimator.ofFloat(myView, rotationX, 0, 360),
-//                ObjectAnimator.ofFloat(myView, rotationY, 0, 180),
-//                ObjectAnimator.ofFloat(myView, rotation, 0, -90),
-//                ObjectAnimator.ofFloat(myView, translationX, 0, 90),
-//                ObjectAnimator.ofFloat(myView, translationY, 0, 90),
-//                ObjectAnimator.ofFloat(myView, scaleX, 1, 1.5f),
-//                ObjectAnimator.ofFloat(myView, scaleY, 1, 0.5f),
-//                ObjectAnimator.ofFloat(myView, alpha, 1, 0.25f, 1)
-//        );
-//        set.setDuration(5 * 1000);
-
-//        mPaint.setColor(Color.RED);
     }
 
 
@@ -89,7 +64,7 @@ public class CellLayout extends BaseLayout {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        DrawBitmapUtilsKt.drawBitmap(canvas, bitmap, getWidth(), getHeight());
+        DrawBitmapUtilsKt.drawBitmap(canvas, bitmapBg, getWidth(), getHeight());        //  绘制背景图
 
         film.setOnClickListener(new OnClickListener() {
             @Override
@@ -114,28 +89,11 @@ public class CellLayout extends BaseLayout {
         resetFilmView();
         resetBookView();
         resetGameView();
-//        imageView.setLayoutParams(params);
-
-
-//        DrawBitmapUtilsKt.drawItemBitmap(canvas, bitmapItemBook, getWidth(), getHeight(), 330f, 80f);
-//        DrawBitmapUtilsKt.drawItemBitmap(canvas, bitmapItemGame, getWidth(), getHeight(), 180f, 350f);
-//        DrawBitmapUtilsKt.drawItemBitmap(canvas, bitmapItemFilm, getWidth(), getHeight(), 350f, 620f);
         super.dispatchDraw(canvas);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-//        if (event.getRawX() > 0) {
-//            if (event.getRawX() > 180 && event.getRawX() < bitmapItemFilm.getWidth() + 350) {
-//                Log.e(TAG, "有效的x点击范围");
-//                if (event.getRawY() > 350 && event.getRawY() < bitmapItemFilm.getHeight() + 620) {
-//                    Log.e(TAG, "有效的Y点击范围");
-//                }
-//            }
-//        }
-//        Log.e(TAG, "点击位置X：" + event.getRawX() + "\t点击位置Y：" + event.getRawY());
-//        Log.e(TAG, "一次点击事件结束\n");
-//        Log.e(TAG, "------------------------------------------------------------------------------------");
         return false;
     }
 

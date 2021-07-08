@@ -67,7 +67,7 @@ public class WorkSpace extends BaseLayout implements DropTarget {
     }
 
     public void init() {
-        MainActivity.get().getDragController().addDropWorkSpace(this);
+//        MainActivity.get().getDragController().addDropWorkSpace(this);
         ViewConfiguration configuration = ViewConfiguration.get(getContext());
         mTouchSlop = configuration.getScaledTouchSlop();
         mMinFlingSpeed = configuration.getScaledMinimumFlingVelocity();
@@ -123,7 +123,7 @@ public class WorkSpace extends BaseLayout implements DropTarget {
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                isTouchMui=false;
+                isTouchMui = false;
                 int index = MotionEventCompat.getActionIndex(ev);
                 float y = MotionEventCompat.getY(ev, index);
                 float x = MotionEventCompat.getX(ev, index);
@@ -149,7 +149,7 @@ public class WorkSpace extends BaseLayout implements DropTarget {
                 mSecondaryLastY = MotionEventCompat.getY(ev, index);
                 mSecondaryLastX = MotionEventCompat.getX(ev, index);
                 mStartDis = distance(ev);
-                isTouchMui=true;
+                isTouchMui = true;
                 break;
 
             case MotionEvent.ACTION_MOVE:
@@ -217,7 +217,8 @@ public class WorkSpace extends BaseLayout implements DropTarget {
     }
 
 
-    boolean isTouchMui=false;
+    boolean isTouchMui = false;
+
     /**
      * 1、处理move状态
      * 2、处理缩放状态
@@ -237,7 +238,7 @@ public class WorkSpace extends BaseLayout implements DropTarget {
         int index = -1;
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                isTouchMui=false;
+                isTouchMui = false;
                 if (!mScroller.isFinished()) { //fling
                     mScroller.abortAnimation();
                 }
@@ -257,7 +258,7 @@ public class WorkSpace extends BaseLayout implements DropTarget {
                 mSecondaryLastY = MotionEventCompat.getY(event, index);
                 mSecondaryLastX = MotionEventCompat.getX(event, index);
                 mStartDis = distance(event);
-                isTouchMui=true;
+                isTouchMui = true;
                 break;
             case MotionEvent.ACTION_POINTER_UP:
                 index = MotionEventCompat.getActionIndex(event);
@@ -294,7 +295,7 @@ public class WorkSpace extends BaseLayout implements DropTarget {
                 //如果可以移动
                 if (Math.abs(deltaY) > mTouchSlop || Math.abs(deltaX) > mTouchSlop) {
 
-                    if ( mTouchStase != TOUCH_SCROLL) {
+                    if (mTouchStase != TOUCH_SCROLL) {
                         requestParentDisallowInterceptTouchEvent();
                         mTouchStase = TOUCH_SCROLL;
                         // 减少滑动的距离
@@ -311,27 +312,42 @@ public class WorkSpace extends BaseLayout implements DropTarget {
                     }
                 }
 
-                if (  count == 2&&mSecondaryPointerId != INVALID_ID && mTouchStase != TOUCH_MULTI) {
+                if (count == 2 && mSecondaryPointerId != INVALID_ID && mTouchStase != TOUCH_MULTI) {
                     requestParentDisallowInterceptTouchEvent();
                     mTouchStase = TOUCH_MULTI;
                 }
 
-                if (!isTouchMui&&mTouchStase == TOUCH_SCROLL&& count == 1 ) {
+                if (!isTouchMui && mTouchStase == TOUCH_SCROLL && count == 1) {
                     //直接滑动
-                    Log.e("TEST", "overscroll" + deltaY + " scrollRange" + getScrollRange() + " overScrollDistance" + mOverScrollDistance);
+                    Log.d("TEST", "overscroll" + deltaY + " scrollRange" + getScrollRange() + " overScrollDistance" + mOverScrollDistance);
                     //overScrollBy((int)deltaX,(int)deltaY,getScrollX(),getScrollY(),0,getScrollRange(),0,mOverScrollDistance,true);
                     scrollBy((int) deltaX, (int) deltaY);
-                }else if (mTouchStase == TOUCH_MULTI && count == 2) {
+                } else if (mTouchStase == TOUCH_MULTI && count == 2) {
                     //保持比例缩放
                     float endDis = distance(event);// 结束距离
+                    Log.e("TEST", "endDis:" + endDis);
                     if (endDis > 10f) { // 两个手指并拢在一起的时候像素大于10
                         float scale = endDis / mStartDis;// 得到缩放倍数
-                        float detalScale=(endDis-mStartDis)/endDis;
-                        float oldScaleX=mCellLayout.getScaleX();
-                        float oldScaleY=mCellLayout.getScaleX();
+
+                        float detalScale = (endDis - mStartDis) / endDis;
+//                        if (detalScale < 0)detalScale = 0;
+                        float oldScaleX = mCellLayout.getScaleX();
+                        if (oldScaleX < 0)oldScaleX = 0;
+                        float oldScaleY = mCellLayout.getScaleX();
+                        if (oldScaleY < 0)oldScaleY = 0;
                         //向外放大
-                        mCellLayout.setScacle(oldScaleX+detalScale,oldScaleY+ detalScale);
+                        mCellLayout.setScacle(oldScaleX + detalScale, oldScaleY + detalScale);
+                        Log.e("TEST",
+                                "mStartDis:" + mStartDis+
+                                "\nscale:" + scale+
+                                "\ndetalScale:" + detalScale+
+                                "\noldScaleX:" + oldScaleX+
+                                "\noldScaleY:" + oldScaleY+
+                                "\noldScaleX + detalScale:" + (oldScaleX + detalScale)+
+                                "\noldScaleY + detalScale:" + (oldScaleY + detalScale)
+                        );
                         mStartDis = endDis;//重置距离
+
                     }
                 }
 
@@ -364,9 +380,6 @@ public class WorkSpace extends BaseLayout implements DropTarget {
         if (mVelocityTracker != null) {
             mVelocityTracker.addMovement(event);
         }
-//        if(event.getAction()==MotionEvent.ACTION_DOWN){
-//            return super.onTouchEvent(event);
-//        }
         return true;
     }
 

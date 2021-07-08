@@ -89,7 +89,7 @@ public class DragController {
 
         // get a offset rectangle of workspace.
         Rect r = new Rect();
-        mLauncher.getToolBar().getGlobalVisibleRect(r);
+//        mLauncher.getToolBar().getGlobalVisibleRect(r);
         r.offset(seleteview.getLeft(),seleteview.getTop());
 
         DragView mDragView=seleteview.createDragView(r);
@@ -97,9 +97,9 @@ public class DragController {
 
         mDragObject = new DropTarget.DragObject();
         mDragObject.dragView = mDragView;
-        mLauncher.getDragLayer().addView(mDragView);
+//        mLauncher.getDragLayer().addView(mDragView);
         mDragObject.dragSource = source;
-        mLauncher.getDragLayer().performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+//        mLauncher.getDragLayer().performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
         mOffsetX =seleteview.getWidth()/2;
         mOffsetY = seleteview.getHeight()/2;
         mMidOffsetX = 0;
@@ -130,10 +130,10 @@ public class DragController {
         if(mDragView.getParent()!=null) {
             ((ViewGroup)mDragView.getParent()).removeView(mDragView);
         }
-        mLauncher.getDragLayer().addView(mDragView);
-        mLauncher.getDragLayer().bringChildToFront(mDragView);
+//        mLauncher.getDragLayer().addView(mDragView);
+//        mLauncher.getDragLayer().bringChildToFront(mDragView);
         mDragObject.dragSource = source;
-        mLauncher.getDragLayer().performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+//        mLauncher.getDragLayer().performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
         mOffsetX =mDragView.getWidth()/2;
         mOffsetY = mDragView.getHeight()/2;
         mMidOffsetX = 0;
@@ -214,7 +214,7 @@ public class DragController {
     private int[] getClampedDragLayerPos(float x, float y) {
         int mTmpPoint[] = new int[2];
         Rect mDragLayerRect = new Rect();
-        mLauncher.getDragLayer().getLocalVisibleRect(mDragLayerRect);
+//        mLauncher.getDragLayer().getLocalVisibleRect(mDragLayerRect);
         mTmpPoint[0] = (int) Math.max(mDragLayerRect.left, Math.min(x, mDragLayerRect.right - 1));
         mTmpPoint[1] = (int) Math.max(mDragLayerRect.top, Math.min(y, mDragLayerRect.bottom - 1));
         return mTmpPoint;

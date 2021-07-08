@@ -38,7 +38,7 @@ public class BottomToolbar extends LinearLayout implements View.OnLongClickListe
     public boolean onLongClick(View v) {
         if(v instanceof IconView) {
             IconView iconView= (IconView) v;
-            MainActivity.get().getDragController().startDrag(iconView,iconView);
+//            MainActivity.get().getDragController().startDrag(iconView,iconView);
         }
         return true;
     }

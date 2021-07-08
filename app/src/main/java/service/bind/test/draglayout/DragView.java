@@ -32,7 +32,7 @@ public class DragView extends ImageView implements IDragView,DragSource{
         setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                MainActivity.get().getDragController().startDragNotCreate(DragView.this,DragView.this);
+//                MainActivity.get().getDragController().startDragNotCreate(DragView.this,DragView.this);
                 return true;
             }
         });

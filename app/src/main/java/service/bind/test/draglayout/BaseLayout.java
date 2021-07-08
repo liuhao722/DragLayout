@@ -54,20 +54,10 @@ public class BaseLayout extends ViewGroup {
                 v.layout(v.getLeft(), v.getTop(), v.getMeasuredWidth(), v.getMeasuredHeight());
             }
         }
-//        int left = 0;
-//        int top = 0;
-//        int childCount = getChildCount();
-//        for (int i = 0; i < childCount; i++) {
-//            View v = getChildAt(i);
-//            if (v != null) {
-//                v.layout(left, top, v.getMeasuredWidth(), v.getMeasuredHeight());
-//            }
-//        }
     }
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-
         int count = getChildCount();
         long drawTime = getDrawingTime();
         if (count > 0) {
